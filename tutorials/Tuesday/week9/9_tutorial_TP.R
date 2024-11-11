@@ -25,7 +25,7 @@ pkgTest <- function(pkg){
 lapply(c("stargazer","vioplot","arm","broom","ggplot2","fastDummies"),  pkgTest)
 
 # Set working directory for current folder
-setwd("C:/Users/tpa064/Downloads")
+setwd("C:/Users/Loimar/Desktop/ASDS_TCD_Data Science_2024/Stats I")
 getwd()
 
 # Research questions: 

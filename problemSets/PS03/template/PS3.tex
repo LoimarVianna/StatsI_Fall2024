@@ -59,7 +59,7 @@
 \lstset{style=mystyle}
 \newcommand{\Sref}[1]{Section~\ref{#1}}
 \newtheorem{hyp}{Hypothesis}
-
+\usepackage{listings}
 \title{Problem Set 3}
 \date{Due: November 11, 2024}
 \author{Applied Stats/Quant Methods 1}
@@ -84,21 +84,92 @@
 \vspace{.25cm}
 \noindent We are interested in knowing how the difference in campaign spending between incumbent and challenger affects the incumbent's vote share. 
 	\begin{enumerate}
-		\item Run a regression where the outcome variable is \texttt{voteshare} and the explanatory variable is \texttt{difflog}.	\vspace{5cm}
-		\item Make a scatterplot of the two variables and add the regression line. 	\vspace{7cm}
-		\item Save the residuals of the model in a separate object.	\vspace{7cm}
+		\item Run a regression where the outcome variable is \texttt{voteshare} and the explanatory variable is \texttt{difflog}.
+		
+		\lstinputlisting[language=R, firstline=33, lastline=40]{"C:/Users/Loimar/Desktop/PS3_answers.R"}
+	
+	\begin{BVerbatim}
+		Call:
+		lm(formula = voteshare ~ difflog, data = inc.sub)
+		
+		Residuals:
+		Min       1Q   Median       3Q      Max 
+		-0.26832 -0.05345 -0.00377  0.04780  0.32749 
+		
+		Coefficients:
+		Estimate Std. Error t value Pr(>|t|)    
+		(Intercept) 0.579031   0.002251  257.19   <2e-16 ***
+		difflog     0.041666   0.000968   43.04   <2e-16 ***
+		---
+		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+		
+		Residual standard error: 0.07867 on 3191 degrees of freedom
+		Multiple R-squared:  0.3673,	Adjusted R-squared:  0.3671 
+		F-statistic:  1853 on 1 and 3191 DF,  p-value: < 2.2e-16
+	\end{BVerbatim}
+			\vspace{5cm}
+		\item Make a scatterplot of the two variables and add the regression line.
+		
+		\lstinputlisting[language=R, firstline=44, lastline=48]{"C:/Users/Loimar/Desktop/PS3_answers.R"}
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=.85\textwidth]{"C:/Users/Loimar/Desktop/graph_1.png"}
+			\label{fig:plot_1}
+		\end{figure}
+	
+		 	\vspace{7cm}
+		\item Save the residuals of the model in a separate object.	
+		\lstinputlisting[language=R, firstline=52, lastline=53]{"C:/Users/Loimar/Desktop/PS3_answers.R"}
+		\vspace{0.7cm}
 		\item Write the prediction equation.
+		\begin{equation}
+			\ y = \beta_0 + \beta_1 x
+		\end{equation}
 	\end{enumerate}
+	
 	
 \newpage
 
 \section*{Question 2}
 \noindent We are interested in knowing how the difference between incumbent and challenger's spending and the vote share of the presidential candidate of the incumbent's party are related.	\vspace{.25cm}
 	\begin{enumerate}
-		\item Run a regression where the outcome variable is \texttt{presvote} and the explanatory variable is \texttt{difflog}.	\vspace{5cm}
-		\item Make a scatterplot of the two variables and add the regression line. 	\vspace{5cm}
-		\item Save the residuals of the model in a separate object.	\vspace{5cm}
+		\item Run a regression where the outcome variable is \texttt{presvote} and the explanatory variable is \texttt{difflog}.
+			\lstinputlisting[language=R, firstline=66, lastline=67]{"C:/Users/Loimar/Desktop/PS3_answers.R"}
+			\begin{BVerbatim}
+		Call:
+		lm(formula = presvote ~ difflog, data = inc.sub)
+		
+		Residuals:
+		Min       1Q   Median       3Q      Max 
+		-0.32196 -0.07407 -0.00102  0.07151  0.42743 
+		
+		Coefficients:
+		Estimate Std. Error t value Pr(>|t|)    
+		(Intercept) 0.507583   0.003161  160.60   <2e-16 ***
+		difflog     0.023837   0.001359   17.54   <2e-16 ***
+		---
+		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+		
+		Residual standard error: 0.1104 on 3191 degrees of freedom
+		Multiple R-squared:  0.08795,	Adjusted R-squared:  0.08767 
+		F-statistic: 307.7 on 1 and 3191 DF,  p-value: < 2.2e-16
+				
+			\end{BVerbatim}
+			\vspace{5cm}
+		\item Make a scatterplot of the two variables and add the regression line.
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=.85\textwidth]{"C:/Users/Loimar/Desktop/figure_2.png"}
+			\label{fig:plot_2}
+		\end{figure}
+		 	\vspace{5cm}
+		\item Save the residuals of the model in a separate object.	
+			\lstinputlisting[language=R, firstline=78, lastline=78]{"C:/Users/Loimar/Desktop/PS3_answers.R"}
+		\vspace{5cm}
 		\item Write the prediction equation.
+		\begin{equation}
+			\ y = \beta_0 + \beta_1 x
+		\end{equation}
 	\end{enumerate}
 	
 	\newpage	
@@ -108,10 +179,39 @@
 	\vspace{.25cm}
 	\begin{enumerate}
 		\item Run a regression where the outcome variable is \texttt{voteshare} and the explanatory variable is \texttt{presvote}.
+		\lstinputlisting[language=R, firstline=88, lastline=89]{"C:/Users/Loimar/Desktop/PS3_answers.R"}
+		\begin{BVerbatim}
+	Call:
+	lm(formula = voteshare ~ presvote, data = inc.sub)
+	
+	Residuals:
+	Min       1Q   Median       3Q      Max 
+	-0.27330 -0.05888  0.00394  0.06148  0.41365 
+	
+	Coefficients:
+	Estimate Std. Error t value Pr(>|t|)    
+	(Intercept) 0.441330   0.007599   58.08   <2e-16 ***
+	presvote    0.388018   0.013493   28.76   <2e-16 ***
+	---
+	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+	
+	Residual standard error: 0.08815 on 3191 degrees of freedom
+	Multiple R-squared:  0.2058,	Adjusted R-squared:  0.2056 
+	F-statistic:   827 on 1 and 3191 DF,  p-value: < 2.2e-16...
+		\end{BVerbatim}
 			\vspace{5cm}
-		\item Make a scatterplot of the two variables and add the regression line. 
+		\item Make a scatterplot of the two variables and add the regression line.
+			\lstinputlisting[language=R, firstline=93, lastline=97]{"C:/Users/Loimar/Desktop/PS3_answers.R"} 
+				\begin{figure}[h!]
+				\centering
+				\includegraphics[width=.85\textwidth]{"C:/Users/Loimar/Desktop/figure_3.png"}
+				\label{fig:figure_3}
+			\end{figure}
 			\vspace{5cm}
 		\item Write the prediction equation.
+		\begin{equation}
+			\ y = \beta_0 + \beta_1 x
+		\end{equation}
 	\end{enumerate}
 	
 
@@ -119,9 +219,40 @@
 \section*{Question 4}
 \noindent The residuals from part (a) tell us how much of the variation in \texttt{voteshare} is $not$ explained by the difference in spending between incumbent and challenger. The residuals in part (b) tell us how much of the variation in \texttt{presvote} is $not$ explained by the difference in spending between incumbent and challenger in the district.
 	\begin{enumerate}
-		\item Run a regression where the outcome variable is the residuals from Question 1 and the explanatory variable is the residuals from Question 2.	\vspace{6cm}
-		\item Make a scatterplot of the two residuals and add the regression line. 	\vspace{6cm}
+		\item Run a regression where the outcome variable is the residuals from Question 1 and the explanatory variable is the residuals from Question 2.	
+			\lstinputlisting[language=R, firstline=107, lastline=108]{"C:/Users/Loimar/Desktop/PS3_answers.R"} 
+		\begin{BVerbatim}
+	Call:
+	lm(formula = residuals_model1 ~ residuals_model2)
+	
+	Residuals:
+	Min       1Q   Median       3Q      Max 
+	-0.25928 -0.04737 -0.00121  0.04618  0.33126 
+	
+	Coefficients:
+	Estimate Std. Error t value Pr(>|t|)    
+	(Intercept)      -4.860e-18  1.299e-03    0.00        1    
+	residuals_model2  2.569e-01  1.176e-02   21.84   <2e-16 ***
+	---
+	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+	
+	Residual standard error: 0.07338 on 3191 degrees of freedom
+	Multiple R-squared:   0.13,	Adjusted R-squared:  0.1298 
+	F-statistic:   477 on 1 and 3191 DF,  p-value: < 2.2e-16
+		\end{BVerbatim}
+		\vspace{6cm}
+		\item Make a scatterplot of the two residuals and add the regression line. 
+		\lstinputlisting[language=R, firstline=112, lastline=116]{"C:/Users/Loimar/Desktop/PS3_answers.R"} 
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=.85\textwidth]{"C:/Users/Loimar/Desktop/figure_4.png"}
+			\label{fig:figure_4}
+		\end{figure}
+			\vspace{6cm}
 		\item Write the prediction equation.
+		\begin{equation}
+			\ y = \beta_0 + \beta_1 x
+		\end{equation}
 	\end{enumerate}
 	
 	\newpage	
@@ -129,9 +260,43 @@
 \section*{Question 5}
 \noindent What if the incumbent's vote share is affected by both the president's popularity and the difference in spending between incumbent and challenger? 
 	\begin{enumerate}
-		\item Run a regression where the outcome variable is the incumbent's \texttt{voteshare} and the explanatory variables are \texttt{difflog} and \texttt{presvote}.	\vspace{5cm}
-		\item Write the prediction equation.	\vspace{5cm}
+		\item Run a regression where the outcome variable is the incumbent's \texttt{voteshare} and the explanatory variables are \texttt{difflog} and \texttt{presvote}.
+			\lstinputlisting[language=R, firstline=127, lastline=128]{"C:/Users/Loimar/Desktop/PS3_answers.R"} 
+			\begin{BVerbatim}
+	Call:
+	lm(formula = voteshare ~ difflog + presvote, data = inc.sub)
+	
+	Residuals:
+	Min       1Q   Median       3Q      Max 
+	-0.25928 -0.04737 -0.00121  0.04618  0.33126 
+	
+	Coefficients:
+	Estimate Std. Error t value Pr(>|t|)    
+	(Intercept) 0.4486442  0.0063297   70.88   <2e-16 ***
+	difflog     0.0355431  0.0009455   37.59   <2e-16 ***
+	presvote    0.2568770  0.0117637   21.84   <2e-16 ***
+	---
+	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+	
+	Residual standard error: 0.07339 on 3190 degrees of freedom
+	Multiple R-squared:  0.4496,	Adjusted R-squared:  0.4493 
+	F-statistic:  1303 on 2 and 3190 DF,  p-value: < 2.2e-16
+				
+			\end{BVerbatim}
+			\vspace{5cm}
+		\item Write the prediction equation.
+	\begin{equation}
+		\ y = \beta_0 + \beta_1 x_1+\beta_2 x_2
+	\end{equation}
+			\vspace{5cm}
 		\item What is it in this output that is identical to the output in Question 4? Why do you think this is the case?
+		
+In question 4, the residuals from voteshare ~ difflog are regressed on the residuals from presvote ~ difflog. The residuals of presvote and vote share were used in model 4
+
+In question 5, the multiple regression of voteshare on both difflog and presvote achieves a similar goal by adjusting for difflog within the regression model itself. The coefficient for presvote in this model reflects its unique contribution to predicting voteshare, independent of difflog.
+
+Both approaches yield similar coefficients for presvote because they measure the same partial effect, isolating the relationship between presvote and voteshare without the influence of difflog.
+
 	\end{enumerate}
 
 
